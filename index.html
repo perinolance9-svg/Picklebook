@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PickleReserve Dashboard & Mobile Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Adds immediate visual feedback to show items can be dragged */
+        .player-meta {
+            cursor: grab !important;
+        }
+        .player-meta:active {
+            cursor: grabbing !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="desktop-view-container" class="view-container">
+        <div class="dashboard">
+            <aside class="sidebar">
+                <div class="logo">Pickle<span>Reserve</span></div>
+                <nav class="nav-menu">
+                    <div class="nav-item" style="cursor: pointer;" onclick="alert('Navigating to Home...')">
+                        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>Home
+                    </div>
+                    <div class="nav-item active" style="cursor: pointer;" onclick="alert('You are already on the Schedule tab.')">
+                        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>Schedule
+                    </div>
+                    <div class="nav-item" style="cursor: pointer;" onclick="alert('Navigating to My Games...')">
+                        <svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="2" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.5"/></svg>My Games
+                    </div>
+                    <div class="nav-item logout" style="cursor: pointer;" onclick="alert('Logging out...')">
+                        <svg class="nav-icon" viewBox="0 0 24 24"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>Log out
+                    </div>
+                </nav>
+                <div class="promo-card">
+                    <h3>Play more.<br>Wait less.</h3>
+                    <p>Easily book courts, invite friends, and enjoy the game.</p>
+                    <div><span class="badge">PICKLEBALL</span></div>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <header class="main-header">
+                    <h1 class="page-title">Schedule</h1>
+                    <div class="header-actions">
+                        <div class="notification-bell" style="cursor: pointer;" onclick="alert('No new notifications')">
+                            <svg class="bell-icon" viewBox="0 0 24 24">
+                                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+                            </svg>
+                            <span class="bell-dot"></span>
+                        </div>
+                        <div class="profile-dropdown" style="cursor: pointer;" onclick="alert('Opening profile options...')">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Lantoy" alt="Avatar" class="avatar-img">
+                            <div class="profile-info">
+                                <span class="profile-name">Lantoy Gwapo <small>▼</small></span>
+                                <span class="profile-role">Player</span>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <section class="controls-bar">
+                    <div class="date-navigator">
+                        <button class="nav-arrow" onclick="alert('Moving to previous day...')">&lt;</button>
+                        <div class="date-display" id="desktopDateLabel">📅 June 13, 2026</div>
+                        <button class="nav-arrow" onclick="alert('Moving to next day...')">&gt;</button>
+                    </div>
+                    <button class="btn-today" onclick="alert('Resetting schedule view to today...')">Today</button>
+                </section>
+
+                <h2 class="current-day-title" id="desktopDayHeading">Saturday, June 13, 2026</h2>
+
+                <div class="dashboard-grid">
+                    <div class="timeline-container">
+                        <div class="timeline-line"></div>
+                        
+                        <div class="timeline-slot slot-purple-dark" id="slot-1">
+                            <div class="time-node" data-time="6:00 AM">6:00 AM<br>- 8:00 AM</div>
+                            <div class="slot-details">
+                                <h3>Open Play</h3>
+                                <div class="player-row avatars-container">
+                                    <div class="player-meta" id="p1" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Lantoy"><span>Lantoy</span></div>
+                                    <div class="player-meta" id="p2" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jenie"><span>Jenie</span></div>
+                                    <div class="player-meta" id="p3" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Oscar"><span>Oscar</span></div>
+                                    <div class="player-meta" id="p4" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John"><span>John</span></div>
+                                </div>
+                            </div>
+                            <div class="slot-status" id="status-slot-1">
+                                <span class="badge-full">⚡ FULL</span><a class="view-players-link" style="cursor:pointer;" onclick="alert('Showing game roster...')">View Roster</a>
+                            </div>
+                        </div>
+
+                        <div class="timeline-slot slot-magenta" id="slot-2">
+                            <div class="time-node" data-time="8:00 AM">8:00 AM<br>- 10:00 AM</div>
+                            <div class="slot-details">
+                                <h3>Open Play</h3>
+                                <div class="player-row avatars-container">
+                                    <div class="player-meta" id="p5" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Wiggy"><span>Wiggy</span></div>
+                                    <div class="player-meta" id="p6" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Loyd"><span>Loyd</span></div>
+                                    <div class="player-meta" id="p7" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jema"><span>Jema</span></div>
+                                    <div class="add-yourself"><button class="btn-plus" onclick="alert('Adding you to Court #2...')">+</button><span>Add yourself</span></div>
+                                </div>
+                            </div>
+                            <div class="slot-status" id="status-slot-2">
+                                <span class="player-count">3/4 Players</span><button class="btn-join" onclick="alert('Joining Court #2 session...')">Join Match</button>
+                            </div>
+                        </div>
+
+                        <div class="timeline-slot slot-yellow-tint" id="slot-3">
+                            <div class="time-node" data-time="10:00 AM">10:00 AM<br>- 12:00 PM</div>
+                            <div class="slot-details">
+                                <h3>Open Play</h3>
+                                <div class="player-row avatars-container">
+                                    <div class="player-meta" id="p8" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jade"><span>Jade</span></div>
+                                    <div class="add-yourself"><button class="btn-plus" onclick="alert('Adding you to Court #3...')">+</button><span>Add yourself</span></div>
+                                </div>
+                            </div>
+                            <div class="slot-status" id="status-slot-3">
+                                <span class="player-count">1/4 Players</span><button class="btn-join" onclick="alert('Joining Court #3 session...')">Join Match</button>
+                            </div>
+                        </div>
+
+                        <div class="timeline-slot slot-yellow-tint" id="slot-4">
+                            <div class="time-node" data-time="10:00 AM">10:00 AM<br>- 12:00 PM</div>
+                            <div class="slot-details">
+                                <h3>Open Play</h3>
+                                <div class="player-row avatars-container">
+                                    <div class="add-yourself"><button class="btn-plus" onclick="alert('Adding you to Court #4...')">+</button><span>Add yourself</span></div>
+                                </div>
+                            </div>
+                            <div class="slot-status" id="status-slot-4">
+                                <span class="player-count">0/4 Players</span><button class="btn-join" onclick="alert('Joining Court #4 session...')">Join Match</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widgets-column">
+                        <div class="widget-panel">
+                            <div class="panel-header"><h3>Upcoming Games</h3></div>
+                            <div id="desktop-upcoming-container">
+                                <div class="mini-event-card">
+                                    <div class="mini-meta">⏱️ Today • 6:00 AM</div>
+                                    <div class="mini-title-row">
+                                        <strong>Open Play (Court #1)</strong>
+                                        <span class="mini-badge">Ready</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-panel actions-panel">
+                            <h3>Quick Actions</h3>
+                            <div class="action-links">
+                                <a style="cursor: pointer;" onclick="alert('Add Slot initialized.')">Add Time Slot</a>
+                                <a style="cursor: pointer;" onclick="alert('Opening roster...')">Invite Players</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="phone-view-container" class="view-container">
+        <div class="phone-app-layout">
+            <header class="phone-sidebar">
+                <div class="phone-logo">Pickle<span>Reserve</span></div>
+                <nav class="phone-nav">
+                    <div class="phone-nav-item" style="cursor: pointer;" onclick="alert('Mobile: Home Link')">Home</div>
+                    <div class="phone-nav-item active" style="cursor: pointer;" onclick="alert('Mobile: Already on Schedule')">Schedule</div>
+                    <div class="phone-nav-item" style="cursor: pointer;" onclick="alert('Mobile: Games Link')">Games</div>
+                </nav>
+            </header>
+
+            <main class="phone-main">
+                <div class="phone-header">
+                    <h2>Schedule</h2>
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Lantoy" class="avatar-img" style="width:34px; height:34px; cursor: pointer;" alt="Avatar" onclick="alert('Mobile Profile Clicked')">
+                </div>
+
+                <div class="phone-controls">
+                    <div class="phone-date-nav">
+                        <button class="nav-arrow" onclick="alert('Mobile: Previous day')">&lt;</button>
+                        <div id="phoneDateLabel" style="font-weight:700; font-size:13px;">📅 June 13, 2026</div>
+                        <button class="nav-arrow" onclick="alert('Mobile: Next day')">&gt;</button>
+                    </div>
+                </div>
+
+                <div class="phone-heading" id="phoneDayHeading">Saturday, June 13, 2026</div>
+
+                <div class="phone-timeline">
+                    <div class="phone-slot slot-purple-dark" id="m-slot-1">
+                        <div class="phone-time-node" data-time="6:00 AM">6:00 AM - 8:00 AM</div>
+                        <h3 style="font-size:15px; font-weight:700;">Open Play</h3>
+                        <div class="phone-players m-avatars-container">
+                            <div class="player-meta" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Lantoy"><span>Lantoy</span></div>
+                            <div class="player-meta" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jenie"><span>Jenie</span></div>
+                            <div class="player-meta" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Oscar"><span>Oscar</span></div>
+                            <div class="player-meta" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John"><span>John</span></div>
+                        </div>
+                        <div class="phone-status-area" id="status-m-slot-1">
+                            <span class="badge-full" style="padding:4px 0; text-align:center; display:block; width:100%;">⚡ FULL</span>
+                        </div>
+                    </div>
+
+                    <div class="phone-slot slot-magenta" id="m-slot-2">
+                        <div class="phone-time-node" data-time="8:00 AM">8:00 AM - 10:00 AM</div>
+                        <h3 style="font-size:15px; font-weight:700;">Open Play</h3>
+                        <div class="phone-players m-avatars-container">
+                            <div class="player-meta" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Wiggy"><span>Wiggy</span></div>
+                            <div class="player-meta" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Loyd"><span>Loyd</span></div>
+                            <div class="player-meta" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jema"><span>Jema</span></div>
+                            <div class="add-yourself"><button class="btn-plus" onclick="alert('Mobile: Join Court #2')">+</button></div>
+                        </div>
+                        <div class="phone-status-area" id="status-m-slot-2">
+                            <span class="player-count" style="text-align:center;">3/4 Slots</span><button class="btn-join" style="padding:4px 0;" onclick="alert('Mobile: Joining Match #2')">Join</button>
+                        </div>
+                    </div>
+
+                    <div class="phone-slot slot-yellow-tint" id="m-slot-3">
+                        <div class="phone-time-node" data-time="10:00 AM">10:00 AM - 12:00 PM</div>
+                        <h3 style="font-size:15px; font-weight:700;">Open Play</h3>
+                        <div class="phone-players m-avatars-container">
+                            <div class="player-meta" draggable="true"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Jade"><span>Jade</span></div>
+                            <div class="add-yourself"><button class="btn-plus" onclick="alert('Mobile: Join Court #3')">+</button></div>
+                        </div>
+                        <div class="phone-status-area" id="status-m-slot-3">
+                            <span class="player-count" style="text-align:center;">1/4 Slots</span><button class="btn-join" style="padding:4px 0;" onclick="alert('Mobile: Joining Match #3')">Join</button>
+                        </div>
+                    </div>
+
+                    <div class="phone-slot slot-yellow-tint" id="m-slot-4">
+                        <div class="phone-time-node" data-time="10:00 AM">10:00 AM - 12:00 PM</div>
+                        <h3 style="font-size:15px; font-weight:700;">Open Play</h3>
+                        <div class="phone-players m-avatars-container">
+                            <div class="add-yourself"><button class="btn-plus" onclick="alert('Mobile: Join Court #4')">+</button></div>
+                        </div>
+                        <div class="phone-status-area" id="status-m-slot-4">
+                            <span class="player-count" style="text-align:center;">0/4 Slots</span><button class="btn-join" style="padding:4px 0;" onclick="alert('Mobile: Joining Match #4')">Join</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phone-widgets">
+                    <div class="widget-panel" style="padding:16px; border-radius:18px;">
+                        <h3 style="font-size:14px; margin-bottom:10px;">Upcoming Games</h3>
+                        <div id="phone-upcoming-container">
+                            <div class="mini-event-card">
+                                <div class="mini-meta">⏱️ Today • 6:00 AM</div>
+                                <div class="mini-title-row">
+                                    <strong>Open Play (Court #1)</strong>
+                                    <span class="mini-badge">Ready</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>
